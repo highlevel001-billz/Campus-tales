@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Campus Tales — student-friendly stories, school-life fiction, and animal fables.">
+<title>Campus Tales | Student & Animal Stories</title>
+<style>
+:root{--bg:#fffaf3;--ink:#302b3b;--muted:#716a79;--pink:#e85d8f;--orange:#ffb45c;--purple:#6554c0;--card:#fff;--line:#f0e4dc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Arial,sans-serif;line-height:1.6}
+header{background:linear-gradient(120deg,#6554c0,#e85d8f);color:#fff;padding:22px 16px 35px}
+nav,.wrap{max-width:1050px;margin:auto}nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:1.25rem;font-weight:900;text-decoration:none;color:#fff;letter-spacing:.4px}nav a{color:white;text-decoration:none;font-weight:700;margin-left:12px;font-size:.92rem}
+.hero{max-width:1050px;margin:35px auto 0;display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:center}
+.tag{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;font-weight:800;color:#ffe6a9}
+h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1.05;margin:10px 0}
+.hero p{max-width:590px;color:#fff2f8}.hero-art{background:#ffffff24;border:1px solid #ffffff50;border-radius:24px;padding:25px;text-align:center;font-size:4rem}
+.btn{display:inline-block;background:#fff;color:#51419c;text-decoration:none;font-weight:800;padding:11px 16px;border-radius:12px;margin-top:8px}
+.wrap{padding:28px 16px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}
+h2{margin:0 0 5px;font-size:1.8rem}.muted{color:var(--muted);margin-top:0}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.filter{border:1px solid #dfd2f3;background:white;color:#554b72;border-radius:999px;padding:9px 14px;font-weight:750;cursor:pointer}.filter.active{background:var(--purple);color:white}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.story{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 7px 20px #4630490a;display:flex;flex-direction:column}
+.cover{min-height:130px;display:grid;place-items:center;font-size:3.5rem;background:linear-gradient(135deg,#ffe1ea,#fff0cb)}
+.story:nth-child(3n+2) .cover{background:linear-gradient(135deg,#d9f4e4,#dce9ff)}.story:nth-child(3n) .cover{background:linear-gradient(135deg,#e8ddff,#ffe1ef)}
+.story-body{padding:17px;display:flex;flex-direction:column;flex:1}.category{font-size:.75rem;font-weight:850;color:var(--pink);text-transform:uppercase;letter-spacing:1px}
+.story h3{margin:6px 0;font-size:1.15rem}.story p{color:var(--muted);margin:0 0 14px}.read{margin-top:auto;align-self:flex-start;border:0;border-radius:9px;background:#f1edff;color:#4e3c9e;padding:10px 13px;font-weight:800;cursor:pointer}
+.ad{margin:24px 0;background:#fff;border:1px dashed #c5b8d7;border-radius:13px;padding:16px;text-align:center;color:#81788c;font-size:.9rem}
+.reader{display:none;margin-top:24px;padding:22px;background:#fff;border:1px solid var(--line);border-radius:18px}.reader.show{display:block}.reader h3{font-size:1.55rem}.reader p{white-space:pre-line}.reader button{background:var(--pink);border:0;border-radius:9px;color:#fff;padding:10px 14px;font-weight:800}
+.about{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+footer{text-align:center;padding:26px 16px;background:#302b3b;color:#eee5f0;font-size:.9rem}footer p{margin:5px}
+@media(max-width:740px){.hero{grid-template-columns:1fr;margin-top:25px}.hero-art{font-size:3rem;padding:15px}.grid{grid-template-columns:1fr}.story{display:grid;grid-template-columns:105px 1fr}.cover{min-height:100%;font-size:2.4rem}.story-body{padding:13px}.story h3{font-size:1.05rem}nav a{margin-left:7px}}
+</style>
+</head>
+<body>
+<header id="home">
+  <nav><a class="logo" href="#home">📚 Campus Tales</a><div><a href="#stories">Stories</a><a href="#about">About</a></div></nav>
+  <div class="hero">
+    <div><div class="tag">Stories for curious minds</div><h1>Little stories.<br>Big imagination.</h1>
+    <p>Enjoy sweet school-life stories, friendship adventures, and animal fables with lessons to remember. Pick a story and start reading!</p>
+    <a class="btn" href="#stories">Explore stories ↓</a></div>
+    <div class="hero-art" aria-label="Books and story icons">💞 📖 🦊</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="stories">
+    <div class="section-head"><div><h2>Choose your next story</h2><p class="muted">Short, original stories you can read on your phone.</p></div></div>
+    <div class="filters">
+      <button class="filter active" data-filter="all">All stories</button>
+      <button class="filter" data-filter="student">Student stories 💗</button>
+      <button class="filter" data-filter="animal">Animal stories 🐾</button>
+    </div>
+    <div class="grid" id="storyGrid"></div>
+    <div class="ad">Advertisement space — ads are not active in this demo. You can add approved ad code after publishing and meeting an ad network’s requirements.</div>
+    <article class="reader" id="reader" aria-live="polite"><button id="closeReader">← Back to stories</button><h3 id="readerTitle"></h3><p id="readerText"></p><p><strong>Lesson:</strong> <span id="readerLesson"></span></p></article>
+  </section>
+  <section id="about">
+    <div class="about"><h2>About Campus Tales</h2><p>Campus Tales is a student-friendly story website with original fictional stories about school life, kindness, friendship, and animals. Stories are for entertainment and learning.</p><p><strong>New here?</strong> Choose a story above and tap “Read story.” This demo works in a browser and does not ask readers for passwords or personal information.</p></div>
+  </section>
+</main>
+<footer><p>© <span id="year"></span> Campus Tales</p><p>Read kindly. Imagine freely. Share responsibly.</p><p>Demo website — publish it online before people elsewhere can visit it.</p></footer>
+
+<script>
+const stories = [
+ {id:1,type:'student',emoji:'💌',title:'The Note in the Library',desc:'Two classmates discover that small acts of kindness can start a beautiful friendship.',text:`On a rainy afternoon, Amara found a folded note inside a library book. It read, “If today feels difficult, remember that tomorrow is another page.”\n\nShe smiled and wrote a reply, thanking the unknown reader. The next day, she found another note, this time with a funny drawing of a smiling sun. For weeks, the two students exchanged encouraging messages without knowing each other’s names.\n\nAt last, they agreed to meet beside the library window. The writer was Tunde, a quiet classmate who often helped others but rarely spoke about himself. They laughed about their secret notes and began studying together. Their friendship grew from patience, respect, and simple kindness.`,lesson:'Kindness can open the door to friendship. Respect each other’s feelings and boundaries.'},
+ {id:2,type:'animal',emoji:'🦁',title:'The Lion and the Little Bird',desc:'A proud lion learns that every creature has something valuable to offer.',text:`A lion once laughed at a tiny bird for being small. “What could someone like you ever do for me?” he asked.\n\nA few days later, a thorn troubled the lion’s paw. He was frightened and could not remove it himself. The little bird called a careful porcupine, who helped the lion safely remove the thorn.\n\nThe lion thanked them both. From then on, he listened to the smaller animals and treated them with respect.`,lesson:'Never judge someone by their size. Everyone has value.'},
+ {id:3,type:'student',emoji:'🌟',title:'A Promise Before Exams',desc:'A group of friends learns that teamwork is better than showing off.',text:`As final exams approached, Kemi worried about mathematics. Her friend Sola was confident, while Musa was good at explaining difficult ideas.\n\nInstead of teasing Kemi, they formed a small study group. Kemi helped them practise English, Sola explained formulas, and Musa made simple examples. They took breaks, asked questions, and reminded one another to rest.\n\nWhen the results arrived, each friend had improved. They celebrated not because they had beaten one another, but because they had worked hard together.`,lesson:'Cooperation, practice, and asking for help can make learning easier.'},
+ {id:4,type:'animal',emoji:'🐢',title:'Tortoise Takes His Time',desc:'A hurried rabbit discovers why careful planning matters.',text:`Rabbit always rushed ahead and laughed when Tortoise moved slowly. One morning, the animals planned a picnic by the river.\n\nRabbit raced off without checking the directions and took the wrong path. Tortoise studied the map, followed the marked trail, and arrived first at the picnic place.\n\nRabbit apologised for laughing at Tortoise. They shared the food and agreed that speed was useful only when paired with good judgement.`,lesson:'Patience and planning are often more useful than rushing.'},
+ {id:5,type:'student',emoji:'🎒',title:'The New Student',desc:'A new student finds courage when classmates choose to include him.',text:`When Daniel joined the class halfway through the term, he ate lunch alone and barely spoke. Zainab noticed that he always drew beautiful pictures in the margins of his notebook.\n\nShe invited him to help design a class noticeboard. Soon, other students joined in, sharing ideas and asking Daniel about his drawings. He slowly felt comfortable enough to speak during lessons.\n\nAt the end of term, Daniel thanked the class. One invitation had helped a new place feel like home.`,lesson:'Including someone can make a big difference. Be welcoming without pressuring anyone.'},
+ {id:6,type:'animal',emoji:'🐘',title:'Elephant Remembers to Share',desc:'A young elephant learns that sharing makes a good day better for everyone.',text:`During a hot season, young Elephant found a shady tree beside a small pool. He wanted the whole place to himself and chased away the other animals.\n\nSoon he noticed that the pool was quiet and the birds no longer sang nearby. He realised that a cool place was more joyful when friends could rest there too.\n\nElephant invited the animals back and took turns drinking water. The shade seemed even better with everyone gathered peacefully.`,lesson:'Sharing and fairness help a community thrive.'}
+];
+const grid=document.getElementById('storyGrid');
+function render(filter='all'){
+ grid.innerHTML='';
+ stories.filter(s=>filter==='all'||s.type===filter).forEach(s=>{
+  const card=document.createElement('article');card.className='story';
+  const cover=document.createElement('div');cover.className='cover';cover.textContent=s.emoji;
+  const body=document.createElement('div');body.className='story-body';
+  const category=document.createElement('div');category.className='category';category.textContent=s.type==='student'?'Student story':'Animal story';
+  const title=document.createElement('h3');title.textContent=s.title;
+  const desc=document.createElement('p');desc.textContent=s.desc;
+  const button=document.createElement('button');button.className='read';button.textContent='Read story →';button.addEventListener('click',()=>openStory(s));
+  body.append(category,title,desc,button);card.append(cover,body);grid.append(card);
+ });
+}
+function openStory(s){
+ document.getElementById('readerTitle').textContent=s.title;
+ document.getElementById('readerText').textContent=s.text;
+ document.getElementById('readerLesson').textContent=s.lesson;
+ document.getElementById('reader').classList.add('show');
+ document.getElementById('reader').scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.filter);
+}));
+document.getElementById('closeReader').addEventListener('click',()=>document.getElementById('reader').classList.remove('show'));
+document.getElementById('year').textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
